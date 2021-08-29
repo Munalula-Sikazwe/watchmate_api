@@ -8,7 +8,7 @@ from watchlist_app.serializers import StreamPlatformSerializer, WatchListSeriali
 class GetCreateStreamPlatformAV(ListCreateAPIView):
     queryset = StreamPlatform.objects.all()
     serializer_class = StreamPlatformSerializer
-class GetWatchListAV(RetrieveUpdateAPIView):
+class GetCreateWatchListAV(RetrieveUpdateAPIView):
     queryset = WatchList.objects.all(ListCreateAPIView)
     serializer_class = WatchListSerializer
 
