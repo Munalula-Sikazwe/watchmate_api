@@ -13,4 +13,3 @@ class WatchListSerializer(WatchList):
     class Meta:
         model = WatchList
         fields = '__all__'
-       
