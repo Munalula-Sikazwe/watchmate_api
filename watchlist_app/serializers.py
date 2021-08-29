@@ -9,7 +9,7 @@ class StreamPlatformSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class WatchListSerializer(WatchList):
+class WatchListSerializer(ModelSerializer):
     class Meta:
         model = WatchList
         fields = '__all__'
