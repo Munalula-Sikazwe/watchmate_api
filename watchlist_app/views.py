@@ -18,3 +18,7 @@ class GetSingleStreamPlatformAv(RetrieveUpdateDestroyAPIView):
 class GetCreateWatchListAV(ListCreateAPIView):
     queryset = WatchList.objects.all()
     serializer_class = WatchListSerializer
+
+class GetSingleWatchListAV(RetrieveUpdateDestroyAPIView):
+    queryset = WatchList.objects.all()
+    serializer_class = WatchListSerializer
