@@ -11,7 +11,7 @@ class WatchListSerializer(ModelSerializer):
 
 
 class StreamPlatformSerializer(ModelSerializer):
-    watchlist = HyperlinkedRelatedField(many=True, read_only=True, view_name='watchlist-detail')
+    watchlist = HyperlinkedRelatedField(many=True, read_only=True, view_name='watchlist:watchlist-detail')
 
     class Meta:
         model = StreamPlatform
