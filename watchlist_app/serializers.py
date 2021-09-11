@@ -1,5 +1,5 @@
 from rest_framework.relations import HyperlinkedRelatedField
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer,HyperlinkedModelSerializer
 
 from watchlist_app.models import StreamPlatform, WatchList
 
@@ -10,8 +10,8 @@ class WatchListSerializer(ModelSerializer):
         fields = '__all__'
 
 
-class StreamPlatformSerializer(ModelSerializer):
-    watchlist = HyperlinkedRelatedField(many=True, read_only=True, view_name='watchlist:watchlist-detail')
+class StreamPlatformSerializer(HyperlinkedModelSerializer):
+
 
     class Meta:
         model = StreamPlatform
