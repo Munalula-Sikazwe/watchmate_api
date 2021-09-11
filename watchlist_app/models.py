@@ -25,7 +25,7 @@ class WatchList(models.Model):
         return self.title
 
 
-class Reviews(models.Model):
+class Review(models.Model):
     rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     description = models.TextField(max_length=200, null=True)
     watchlist = models.ForeignKey(WatchList, on_delete=models.CASCADE, related_name='reviews')
