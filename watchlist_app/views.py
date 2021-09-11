@@ -23,3 +23,4 @@ class GetCreateWatchListAV(ListCreateAPIView):
 class GetSingleWatchListAV(RetrieveUpdateDestroyAPIView):
     queryset = WatchList.objects.all()
     serializer_class = WatchListSerializer
+
