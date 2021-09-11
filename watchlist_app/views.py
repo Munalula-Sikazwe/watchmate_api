@@ -28,3 +28,6 @@ class GetSingleReview(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
+class GetCreateReview(ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
