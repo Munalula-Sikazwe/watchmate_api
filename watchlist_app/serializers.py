@@ -10,6 +10,8 @@ class ReviewSerializer(ModelSerializer):
 
 
 class WatchListSerializer(ModelSerializer):
+    reviews = ReviewSerializer(many=True, read_only=True)
+
     class Meta:
         model = WatchList
         fields = '__all__'
