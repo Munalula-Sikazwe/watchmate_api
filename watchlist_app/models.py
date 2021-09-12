@@ -5,6 +5,9 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 from django.db.models import CASCADE
 
+from django.conf import settings
+
+
 class MyUser(AbstractUser):
     pass
 
@@ -29,6 +32,7 @@ class WatchList(models.Model):
 
 
 class Review(models.Model):
+    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=CASCADE,related_name='my_user')
     rating = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     description = models.TextField(max_length=200, null=True)
     watchlist = models.ForeignKey(WatchList, on_delete=models.CASCADE, related_name='reviews')
