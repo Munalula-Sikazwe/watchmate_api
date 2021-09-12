@@ -42,5 +42,5 @@ class StreamPlatformVs(ModelViewSet):
     queryset = StreamPlatform.objects.all()
     serializer_class = StreamPlatformSerializer
 
-   
+
 
