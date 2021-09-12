@@ -2,7 +2,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView,GenericAPIView
 # Create your views here.
 from rest_framework.response import Response
-from rest_framework.viewsets import ViewSet
+from rest_framework.viewsets import ViewSet, ModelViewSet
 
 from watchlist_app.models import StreamPlatform, WatchList, Review
 from watchlist_app.serializers import StreamPlatformSerializer, WatchListSerializer, ReviewSerializer
@@ -38,11 +38,9 @@ class GetCreateReview(ListCreateAPIView):
     serializer_class = ReviewSerializer
 
 
-class StreamPlatformVs(GenericAPIView,ViewSet):
+class StreamPlatformVs(ModelViewSet):
     queryset = StreamPlatform.objects.all()
     serializer_class = StreamPlatformSerializer
 
-    def list(self,request):
-        serializer = self.get_serializer()
-        return Response(serializer.data)
+   
 
