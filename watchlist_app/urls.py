@@ -9,5 +9,5 @@ urlpatterns = [
     path('stream-platform',GetCreateStreamPlatformAV.as_view()),
     path('watchlist/<int:pk>',GetSingleWatchListAV.as_view(),name='watchlist-detail'),
     path('watchlist/<int:pk>/reviews',GetCreateReview.as_view(),name='watchlist-reviews'),
-    path('watchlist/<int:pk>/reviews/1',GetSingleReview.as_view(),name='watchlist-reviews-detail')
+    path('watchlist/reviews/<int:pk>',GetSingleReview.as_view(),name='watchlist-reviews-detail')
 ]
