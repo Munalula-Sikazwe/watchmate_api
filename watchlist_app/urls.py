@@ -1,11 +1,11 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter, SimpleRouter
 
 from .views import GetCreateStreamPlatformAV, GetCreateWatchListAV, GetSingleStreamPlatformAv, GetSingleWatchListAV, \
     GetCreateReview, GetSingleReview, StreamPlatformVs
 
 app_name = 'watchlist'
-router = DefaultRouter(trailing_slash=False)
+router = SimpleRouter(trailing_slash=False)
 router.register('/viewset',StreamPlatformVs,basename='streamplatform')
 
 
