@@ -5,7 +5,7 @@ from .views import GetCreateStreamPlatformAV, GetCreateWatchListAV, GetSingleStr
     GetCreateReview, GetSingleReview, StreamPlatformVs
 
 app_name = 'watchlist'
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 router.register('/viewset',StreamPlatformVs,basename='streamplatform')
 
 
