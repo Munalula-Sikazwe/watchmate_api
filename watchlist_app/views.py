@@ -1,4 +1,3 @@
-
 from requests import Response
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -42,11 +41,17 @@ class GetCreateReview(ListCreateAPIView):
         return self.queryset.filter(watchlist=self.kwargs.get('pk'))
 
     def perform_create(self, serializer):
+        pk = self.kwargs.get('pk')
         reviewer = self.request.user
-        queryset = self.queryset.filter(watchlist=self.kwargs.get('pk'), reviewer=reviewer)
+        queryset = self.queryset.filter(watchlist=pk, reviewer=reviewer)
         if queryset.exists():
             return Response({"error": "You have already made a review for this watchlist."},
                             status=status.HTTP_409_CONFLICT)
+        try:
+            watchlist = WatchList.objects.get(pk=pk)
+        except WatchList.DoesNotExist:
+            return Response({"error": "The watchlist does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
         serializer.save(reviewer=reviewer)
 
 
