@@ -52,7 +52,7 @@ class GetCreateReview(ListCreateAPIView):
         except WatchList.DoesNotExist:
             return Response({"error": "The watchlist does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer.save(reviewer=reviewer)
+        serializer.save(reviewer=reviewer,watchlist=watchlist)
 
 
 class StreamPlatformVs(ModelViewSet):
