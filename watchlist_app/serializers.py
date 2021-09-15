@@ -1,16 +1,22 @@
+from rest_framework import serializers
+from rest_framework.relations import StringRelatedField
 from rest_framework.serializers import ModelSerializer
 
 from watchlist_app.models import StreamPlatform, WatchList, Review
 
 
 class ReviewSerializer(ModelSerializer):
+
+
     class Meta:
         model = Review
         fields = "__all__"
 
 
 class WatchListSerializer(ModelSerializer):
-    reviews = ReviewSerializer(many=True, read_only=True)
+    reviews = StringRelatedField(many=True)
+
+
 
     class Meta:
         model = WatchList

@@ -37,6 +37,8 @@ class GetCreateReview(ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
+    def get_queryset(self):
+        return self.queryset.filter(watchlist=self.kwargs.get('pk'))
 
 class StreamPlatformVs(ModelViewSet):
     queryset = StreamPlatform.objects.all()
