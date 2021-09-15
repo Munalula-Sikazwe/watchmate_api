@@ -1,4 +1,4 @@
-import reviewer as reviewer
+
 from requests import Response
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
