@@ -1,7 +1,11 @@
-from requests import Response
+import pdb
+
+
 from rest_framework import status
+from rest_framework.exceptions import ValidationError
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 # Create your views here.
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from watchlist_app.models import StreamPlatform, WatchList, Review
@@ -45,12 +49,11 @@ class GetCreateReview(ListCreateAPIView):
         reviewer = self.request.user
         queryset = self.queryset.filter(watchlist=pk, reviewer=reviewer)
         if queryset.exists():
-            return Response({"error": "You have already made a review for this watchlist."},
-                            status=status.HTTP_409_CONFLICT)
+            raise ValidationError( "You have already made a review for this watchlist.")
         try:
             watchlist = WatchList.objects.get(pk=pk)
         except WatchList.DoesNotExist:
-            return Response({"error": "The watchlist does not exist"}, status=status.HTTP_404_NOT_FOUND)
+            raise ValidationError( "The watchlist does not exist")
 
         serializer.save(reviewer=reviewer,watchlist=watchlist)
 
