@@ -38,9 +38,7 @@ class WatchList(models.Model):
 
     def __str__(self):
         return self.title
-    def get_total_rating(self):
-        self.total_ratings = self.reviews.all().count()
-    
+
 
 class Review(models.Model):
     reviewer = models.ForeignKey(MyUser,on_delete=CASCADE,related_name='my_user')

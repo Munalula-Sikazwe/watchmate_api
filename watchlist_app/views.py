@@ -56,7 +56,7 @@ class GetCreateReview(ListCreateAPIView):
             watchlist = WatchList.objects.get(pk=pk)
         except WatchList.DoesNotExist:
             raise ValidationError( "The watchlist does not exist")
-
+        watchlist.total_ratings += serializer.validated_data.get('rating')
         serializer.save(reviewer=reviewer,watchlist=watchlist)
 
 
