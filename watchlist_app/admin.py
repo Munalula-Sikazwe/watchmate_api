@@ -9,4 +9,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(WatchList)
 admin.site.register(StreamPlatform)
 admin.site.register(Review)
-admin.site.register(MyUser)
+admin.site.register(MyUser,CustomUserAdmin)
