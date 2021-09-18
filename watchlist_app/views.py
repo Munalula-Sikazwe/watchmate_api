@@ -60,7 +60,8 @@ class GetCreateReview(ListCreateAPIView):
         if watchlist.avg_rating == 0:
             watchlist.avg_rating = serializer.validated_data.get('rating')
         else:
-            watchlist.avg_rating += serializer.validated_data.get('rating')/2
+            watchlist.avg_rating += serializer.validated_data.get('rating')
+            watchlist.avg_rating /= 2 
         watchlist.save()
         serializer.save(reviewer=reviewer,watchlist=watchlist)
 
