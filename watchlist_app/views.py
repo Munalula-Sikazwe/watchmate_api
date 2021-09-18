@@ -57,7 +57,10 @@ class GetCreateReview(ListCreateAPIView):
         except WatchList.DoesNotExist:
             raise ValidationError( "The watchlist does not exist")
         watchlist.total_ratings += 1
-        watchlist.avg_rating += serializer.validated_data.get('rating')/2
+        if watchlist.avg_rating == 0:
+            watchlist.avg_rating = serializer.validated_data.get('rating')
+        else:
+            watchlist.avg_rating += serializer.validated_data.get('rating')/2
         watchlist.save()
         serializer.save(reviewer=reviewer,watchlist=watchlist)
 
