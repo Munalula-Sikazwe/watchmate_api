@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from watchlist_app.models import StreamPlatform, WatchList, Review
-from watchlist_app.permissions import UserPermissions
+from watchlist_app.permissions import UserPermissions, ReviewPermissions
 from watchlist_app.serializers import StreamPlatformSerializer, WatchListSerializer, ReviewSerializer
 
 
@@ -36,12 +36,13 @@ class GetSingleWatchListAV(RetrieveUpdateDestroyAPIView):
 class GetSingleReview(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+    permission_classes = [ReviewPermissions]
 
 
 class GetCreateReview(ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [UserPermissions]
+
     def get_queryset(self):
         return self.queryset.filter(watchlist=self.kwargs.get('pk'))
 
