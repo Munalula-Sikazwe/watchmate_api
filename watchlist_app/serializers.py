@@ -11,7 +11,6 @@ class ReviewSerializer(ModelSerializer):
     class Meta:
         model = Review
         fields = "__all__"
-        depth = 1
 
 class WatchListSerializer(ModelSerializer):
     reviews = StringRelatedField(many=True)
