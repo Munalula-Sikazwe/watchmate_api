@@ -7,8 +7,14 @@ from django.db.models import CASCADE
 
 from django.conf import settings
 
-
+roles = (
+    ('supervisor',"SuperVisor"),
+    ('sales_agent',"SalesAgent"),
+    ('customer',"Customer"),
+    ('director',"Director")
+)
 class MyUser(AbstractUser):
+    user_role = models.CharField(choices=roles)
     def __str__(self):
         return f'{self.username}'
 
