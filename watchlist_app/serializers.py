@@ -10,7 +10,7 @@ class ReviewSerializer(ModelSerializer):
 
     class Meta:
         model = Review
-        fields = "__all__"
+        exclude = ('reviewer',)
 
 class WatchListSerializer(ModelSerializer):
     reviews = StringRelatedField(many=True)
