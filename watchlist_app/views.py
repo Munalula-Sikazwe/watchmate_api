@@ -40,7 +40,7 @@ class GetSingleReview(RetrieveUpdateDestroyAPIView):
 class GetCreateReview(ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-
+    permission_classes = []
     def get_queryset(self):
         return self.queryset.filter(watchlist=self.kwargs.get('pk'))
 
