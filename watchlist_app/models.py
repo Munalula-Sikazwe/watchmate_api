@@ -14,7 +14,7 @@ roles = (
     ('director',"Director")
 )
 class MyUser(AbstractUser):
-    user_role = models.CharField(choices=roles)
+    user_role = models.CharField(choices=roles,max_length=100)
     def __str__(self):
         return f'{self.username}'
 
