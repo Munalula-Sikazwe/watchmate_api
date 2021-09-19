@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/',include('watchlist_app.urls',namespace='watchlist')),
     path('api-auth',include('rest_framework.urls')),
-    path('accounts/',include('user_app.urls',namespace="login")),
+    path('accounts/',include('user_app.urls',namespace="user")),
 ]
