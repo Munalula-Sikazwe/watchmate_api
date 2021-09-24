@@ -19,6 +19,6 @@ class RegistrationView(CreateAPIView):
 class LogoutView(APIView):
 
     def post(self, request):
-        if request.user.is_authenticated():
-            request.user.authtoken.delete()
+        if request.user.is_authenticated:
+            request.user.auth_token.delete()
             return Response({"success":"You have successfully logged out."},status=status.HTTP_200_OK)
