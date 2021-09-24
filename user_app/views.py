@@ -12,5 +12,5 @@ class RegistrationView(CreateAPIView):
     queryset = user.objects.all()
     serializer_class = RegistrationSerializer
 
-    
+
 
