@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'watchlist_app.apps.WatchlistAppConfig',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters'
 
 ]
 
