@@ -1,6 +1,6 @@
 import pdb
 
-
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -26,6 +26,9 @@ class GetSingleStreamPlatformAv(RetrieveUpdateDestroyAPIView):
 class GetCreateWatchListAV(ListCreateAPIView):
     queryset = WatchList.objects.all()
     serializer_class = WatchListSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title']
+
 
 
 class GetSingleWatchListAV(RetrieveUpdateDestroyAPIView):
