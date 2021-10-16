@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from rest_framework.status import HTTP_201_CREATED
+from rest_framework.status import HTTP_201_CREATED, HTTP_200_OK
 from rest_framework.test import APITestCase
 from django.urls import reverse
 # Create your tests here.
@@ -32,3 +32,6 @@ class LoginLogoutTestCase(APITestCase):
             'username':'testuser',
             'password':'test_password'
         }
+        url = reverse('user:token_obtain_pair')
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code,HTTP_200_OK)
