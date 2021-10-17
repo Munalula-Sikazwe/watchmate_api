@@ -38,6 +38,7 @@ class LoginLogoutTestCase(APITestCase):
 
         response = self.client.post(url, data)
         self.refresh_token = response.data.get('refresh')
+        self.access_token = response.data.get('access')
         self.assertEqual(response.status_code, HTTP_200_OK)
 
     def test_logout(self):
@@ -46,6 +47,7 @@ class LoginLogoutTestCase(APITestCase):
         data = {
             "token":self.refresh_token
         }
-        print(self.refresh_token)
+        self.client.credentials(HTTP_AUTHORIZATION = "Bearer "+self.access_token)
+
         response = self.client.post(url,data)
         self.assertEqual(response.status_code,HTTP_205_RESET_CONTENT)
