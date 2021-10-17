@@ -35,9 +35,3 @@ class TokenBlacklistSerializer(serializers.Serializer):
 
     token = CharField(max_length=1000)
 
-    def validate_token(self,token):
-
-        if token:
-            return token
-        else:
-            return ValidationError("You need to send a token.")
