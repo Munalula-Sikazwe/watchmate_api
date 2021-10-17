@@ -21,9 +21,10 @@ class LogoutView(GenericAPIView):
     serializer_class = TokenBlacklistSerializer
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exceptions=True)
+        serializer.is_valid(raise_exception=True)
         token = serializer.validated_data.get('token')
+        print(token)
         refresh_token = RefreshToken(token)
         refresh_token.blacklist()
-        return Response(status=status.HTTP_205_RESET_CONTENT)
+        return Response({"success":"You have successfully logged out."},status=status.HTTP_205_RESET_CONTENT)
 
