@@ -1,12 +1,13 @@
 # Create your views here.
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
 
-from user_app.serializers import RegistrationSerializer
+from user_app.serializers import RegistrationSerializer, TokenBlacklistSerializer
 
 
 class RegistrationView(CreateAPIView):
@@ -16,9 +17,13 @@ class RegistrationView(CreateAPIView):
     permission_classes = [AllowAny]
 
 
-class LogoutView(APIView):
-
+class LogoutView(GenericAPIView):
+    serializer_class = TokenBlacklistSerializer
     def post(self, request):
-        if request.user.is_authenticated:
-            request.user.auth_token.delete()
-            return Response({"success":"You have successfully logged out."},status=status.HTTP_200_OK)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exceptions=True)
+        token = serializer.validated_data.get('token')
+        refresh_token = RefreshToken(token)
+        refresh_token.blacklist()
+        return Response(status=status.HTTP_205_RESET_CONTENT)
+
